@@ -104,7 +104,7 @@
           <!-- Date -->
           <span class="date-time info">On
             <span class="date">2023-07-26</span>
-            <span class="time">11:34:32</span>
+            <span class="time">21:46:33</span>
           </span>
           
         </div>
@@ -118,11 +118,14 @@
 <p><strong>rustc</strong>-complier</p>
 <p><strong>cargo</strong>-build+dependency manager</p>
 <p>Rust Playground service in <a target="_blank" rel="noopener" href="http://play.rust-lang.org/">http://play.rust-lang.org</a></p>
-<h3 id="Key-words"><a href="#Key-words" class="headerlink" title="Key words"></a>Key words</h3><p><strong>fn</strong>-function</p>
+<h3 id="Key-words"><a href="#Key-words" class="headerlink" title="Key words"></a>Key words</h3><hr>
+<p><strong>fn</strong>-function</p>
 <p><strong>macro</strong></p>
+<hr>
 <p><strong>let</strong>-variable </p>
 <p><strong>let mut</strong>-mutated variable </p>
 <p>rust has a local type inference</p>
+<hr>
 <p><strong>if-else if-else</strong><br>if is an expression that always return a value or empty</p>
 <p><strong>;</strong> will absence in the last line to mark the return</p>
 <p><strong>()</strong> may absence in condition</p>
@@ -131,6 +134,7 @@
 <p><strong>while</strong></p>
 <p><strong>loop</strong>-while(true)</p>
 <p><strong>break</strong> </p>
+<hr>
 <p><strong>structs</strong><br>-has named fields<br>struct A{<br>    s:u8;<br>    t:String<br>}</p>
 <p>struct tuple<br>-achieve better levels of type safety,  diff struct can’t compare to each other because the value have diff meaning and we need some conversion<br>#[derive(PartialEq)]<br>struct Celsius(i64);</p>
 <p>primitive types</p>
@@ -141,15 +145,81 @@
 <p><strong>impl</strong> ff{<br>    fn new_named()-&gt;A{} //static method+associated function<br>    fn get_B(&amp;self)-&gt;u8{self.len} //callable method, use&amp; for ownership<br>}</p>
 <p>！！！返回值要定义，当然只有在不需要的时候才不用，另外注意 &amp;self 机制和可变变量用mut</p>
 <p><strong>use</strong><br>-include other codes</p>
+<hr>
 <p>sequence</p>
 <p><strong>array</strong>-[,],fixed length, once same type</p>
 <p><strong>tuples</strong>-{,},varying types,utral useful in return mutiple value</p>
 <p><strong>slices</strong>-&amp;A[0..2] point to a range in existing data</p>
 <p>in lib</p>
 <p><strong>Vector</strong>-non prefix length</p>
-<p>Vec::new() or vec!macro<br>push</p>
+<p>Vec::new() or vec!macro</p>
+<p>push</p>
 <p>iterators-collect</p>
-<p><strong>HashMaps</strong> -key,value data<br>insert(key,value)</p>
+<p><strong>HashMaps</strong> -key,value data</p>
+<p>insert(key,value)</p>
+<hr>
+<h1 id="chapter-2-Cargo"><a href="#chapter-2-Cargo" class="headerlink" title="chapter 2 Cargo"></a>chapter 2 Cargo</h1><p><strong>cargo init XX</strong></p>
+<p>–bin</p>
+<p>Cargo.toml<br>    [package]<br>    [dependencies]</p>
+<p>Cargo.lock</p>
+<p><strong>cargo build</strong></p>
+<p>default debug version<br>-release</p>
+<p><strong>cargo run</strong></p>
+<p>build+run bindary</p>
+<p><strong>cargo test</strong></p>
+<p>unit test<br>library project-lib.rs<br>test-driven development(TDD)</p>
+<p><strong>cargo update</strong></p>
+<p>dependencies</p>
+<p><strong>cargo search/install</strong></p>
+<p>editors</p>
+<h1 id="chapter-3-Unit-test-and-Benchmarking"><a href="#chapter-3-Unit-test-and-Benchmarking" class="headerlink" title="chapter 3 Unit test and Benchmarking"></a>chapter 3 Unit test and Benchmarking</h1><p>automatic testing</p>
+<ol>
+<li>Annotation</li>
+</ol>
+<ul>
+<li><p>#[test]: without rustc –test or cargo test, it will be ignored</p>
+</li>
+<li><p>#[cfg(test)]: isolate , extend code, and for controlling compliation</p>
+</li>
+<li><p>#[should_panic]: panic!() may cause a non-recoverable failure</p>
+</li>
+<li><p>#[ignore]: just ignore or run by adding –ignore</p>
+</li>
+</ul>
+<ol start="2">
+<li>Assert macro</li>
+</ol>
+<ul>
+<li><p>aeesrt! : can add corresponding information</p>
+</li>
+<li><p>assert_eq!</p>
+</li>
+</ul>
+<ol start="3">
+<li>Integration testing</li>
+</ol>
+<ul>
+<li><p>via tests/directory</p>
+</li>
+<li><p>black box teats</p>
+<p>  <strong>Crate</strong>: Rust’s naming for external libraries</p>
+<p>  need specify all crates</p>
+<p>  extern crate sum;</p>
+</li>
+</ul>
+<ol start="4">
+<li><p>Documentation tests</p>
+<p> change code need update documentation simteniously</p>
+<p> model level: //!</p>
+<p> function level: ///</p>
+<p> Benchmarks</p>
+<p> automation</p>
+</li>
+</ol>
+<ul>
+<li>#[bench]:</li>
+</ul>
+<p>Travis:<br>run project’s unit tests automatically in the cloud</p>
 
         </div>
       </div>
