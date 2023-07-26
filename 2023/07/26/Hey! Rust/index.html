@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="guoyingxin">
   <!-- Open Graph Data -->
-  <meta property="og:title" content="通信原理"/>
+  <meta property="og:title" content="Note for Rust"/>
   <meta property="og:description" content="" />
   <meta property="og:site_name" content="guoyingxin"/>
   <meta property="og:type" content="article" />
@@ -47,7 +47,7 @@
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         <div class="page-title with-background-image">
-          <p class="title">通信原理</p>
+          <p class="title">Note for Rust</p>
           <p class="subtitle"></p>
         </div>
         <div class="site-menu with-background-image">
@@ -103,7 +103,7 @@
           
           <!-- Date -->
           <span class="date-time info">On
-            <span class="date">2023-06-28</span>
+            <span class="date">2023-07-26</span>
             <span class="time">11:34:32</span>
           </span>
           
@@ -112,31 +112,44 @@
         
         <!-- Post Main Content -->
         <div class="post-content">
-          <p>把原来Notion上的笔记搬过来，整理复习一下</p>
-<h3 id="期末时写的注意事项"><a href="#期末时写的注意事项" class="headerlink" title="期末时写的注意事项"></a>期末时写的注意事项</h3><p>均匀量化，量化噪声与信号细节无关</p>
-<p>双极性码无离散谱-还应该先验等概</p>
-<p>先确定好前置码或前置电平</p>
-<p>先求Rb，在算RB=Rb/log2M，之后根据码型得到基带的B=RB(1+α)/2(min 1/2T)，最后得到在数字调制后的B=2B（只看正功率部分）</p>
-<p>η=RB/BT</p>
-<p>原理框图</p>
-<p>调制解调先确定其具体方式-相关or非相关，去确定频率值</p>
-<p>输入是否要差分编码</p>
-<p>是不是要进行串并转换</p>
-<p>是否需要码型变换或者电平转换，得到双极性码或者4电平码等</p>
-<p>调制使用的频率对应支路的相位是否正确</p>
-<p>相加得到输出</p>
-<p>带通滤波后输出</p>
-<p>解调先确定滤波器形式：带通，MF</p>
-<p>是否需要载波提取</p>
-<p>之后乘cos</p>
-<p>积分—这是相关的做法</p>
-<p>不积分</p>
-<p>-采用包络检测—非相关</p>
-<p>-LPF-滤除倍频项</p>
-<p>相加</p>
-<p>判决-定时提取</p>
-<p>并串转换</p>
-<p>解码</p>
+          <h1 id="chapter-1-Get-Your-Feet-Wet"><a href="#chapter-1-Get-Your-Feet-Wet" class="headerlink" title="chapter 1 Get Your Feet Wet"></a>chapter 1 Get Your Feet Wet</h1><p>To summarize, you should care about Rust because you can write high performing software with less bugs in it while enjoying many modern language features and an awesome community!</p>
+<p>zero-cost abstractions</p>
+<p>compiler-assisted resource safety</p>
+<p><strong>rustc</strong>-complier</p>
+<p><strong>cargo</strong>-build+dependency manager</p>
+<p>Rust Playground service in <a target="_blank" rel="noopener" href="http://play.rust-lang.org/">http://play.rust-lang.org</a></p>
+<h3 id="Key-words"><a href="#Key-words" class="headerlink" title="Key words"></a>Key words</h3><p><strong>fn</strong>-function</p>
+<p><strong>macro</strong></p>
+<p><strong>let</strong>-variable </p>
+<p><strong>let mut</strong>-mutated variable </p>
+<p>rust has a local type inference</p>
+<p><strong>if-else if-else</strong><br>if is an expression that always return a value or empty</p>
+<p><strong>;</strong> will absence in the last line to mark the return</p>
+<p><strong>()</strong> may absence in condition</p>
+<p><strong>{}</strong> mark a block</p>
+<p>loops</p>
+<p><strong>while</strong></p>
+<p><strong>loop</strong>-while(true)</p>
+<p><strong>break</strong> </p>
+<p><strong>structs</strong><br>-has named fields<br>struct A{<br>    s:u8;<br>    t:String<br>}</p>
+<p>struct tuple<br>-achieve better levels of type safety,  diff struct can’t compare to each other because the value have diff meaning and we need some conversion<br>#[derive(PartialEq)]<br>struct Celsius(i64);</p>
+<p>primitive types</p>
+<p><strong>enum</strong><br>-can be named or anonymous type</p>
+<p>pattern matching<br>-use <strong>match</strong> to utilize enum</p>
+<p>Debug trait</p>
+<p>methods for struct</p>
+<p><strong>impl</strong> ff{<br>    fn new_named()-&gt;A{} //static method+associated function<br>    fn get_B(&amp;self)-&gt;u8{self.len} //callable method, use&amp; for ownership<br>}</p>
+<p>！！！返回值要定义，当然只有在不需要的时候才不用，另外注意 &amp;self 机制和可变变量用mut</p>
+<p><strong>use</strong><br>-include other codes</p>
+<p>sequence</p>
+<p><strong>array</strong>-[,],fixed length, once same type</p>
+<p><strong>tuples</strong>-{,},varying types,utral useful in return mutiple value</p>
+<p><strong>slices</strong>-&amp;A[0..2] point to a range in existing data</p>
+<p>in lib</p>
+<p><strong>Vector</strong>-non prefix length</p>
+<p>Vec::new() or vec!macro<br>push</p>
+<p>iterators-collect</p>
+<p><strong>HashMaps</strong> -key,value data<br>insert(key,value)</p>
 
         </div>
       </div>
