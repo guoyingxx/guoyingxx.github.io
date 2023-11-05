@@ -104,7 +104,7 @@
           <!-- Date -->
           <span class="date-time info">On
             <span class="date">2023-07-26</span>
-            <span class="time">21:46:33</span>
+            <span class="time">17:01:32</span>
           </span>
           
         </div>
@@ -220,6 +220,40 @@
 <li>#[bench]:</li>
 </ul>
 <p>Travis:<br>run project’s unit tests automatically in the cloud</p>
+<h1 id="chapter-4-Types"><a href="#chapter-4-Types" class="headerlink" title="chapter 4 Types"></a>chapter 4 Types</h1><p>Expect lots of heavy material in this chapter, and be brave!</p>
+<p>Unfortunately, nothing is actually free, and in this case, it means that you, the programmer, will need to pay some of<br>that price.</p>
+<h3 id="String-types"><a href="#String-types" class="headerlink" title="String types"></a>String types</h3><p>string slices (str) / String</p>
+<p>Unicode<br>UTF-8/u8</p>
+<p>string slices (str) :</p>
+<ul>
+<li>Pointing to a statically allocated string (&amp;’static str)</li>
+<li>As arguments to a function (use the &amp;str type or slice)</li>
+<li>As a view to a string inside another data structure (&amp;)</li>
+</ul>
+<p>String:</p>
+<ul>
+<li>allocated in the heap</li>
+<li>mutable: grow needs reallocation</li>
+<li>let string: String = string_slice.into();</li>
+</ul>
+<p>Byte strings:</p>
+<ul>
+<li> &amp;[u8]</li>
+<li>not every array of bytes is valid UTF-8</li>
+</ul>
+<p>Takeaways:</p>
+<ul>
+<li>There are two string types: String and &amp;str</li>
+<li>Strings in Rust are guaranteed to be Unicode</li>
+<li>When passing strings to functions, favor the &amp;str type</li>
+<li>When returning strings from functions, favor the String type</li>
+<li>Raw byte strings are arrays or vectors of 8-bit unsigned integers (u8)</li>
+<li>Strings are heap-allocated and dynamically grown, which makes them flexible but costlier</li>
+</ul>
+<p>Arrays </p>
+<p>Generic types:</p>
+<p>Traits:</p>
+<p>global value<br>-statics<br>-constants/</p>
 
         </div>
       </div>
