@@ -104,7 +104,7 @@
           <!-- Date -->
           <span class="date-time info">On
             <span class="date">2024-07-10</span>
-            <span class="time">16:22:41</span>
+            <span class="time">16:34:57</span>
           </span>
           
         </div>
@@ -120,8 +120,8 @@
         
         <!-- Post Main Content -->
         <div class="post-content">
-          <p>参考(<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/554963544">https://zhuanlan.zhihu.com/p/554963544</a>), (<a target="_blank" rel="noopener" href="https://gitee.com/poohdang/p4-env/tree/advanced/p4">https://gitee.com/poohdang/p4-env/tree/advanced/p4</a>)</p>
-<h2 id="实验模块介绍"><a href="#实验模块介绍" class="headerlink" title="实验模块介绍"></a>实验模块介绍</h2><p><img src="image.png" alt="alt text"></p>
+          <p>参考(<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/554963544">https://zhuanlan.zhihu.com/p/554963544</a>) , (<a target="_blank" rel="noopener" href="https://gitee.com/poohdang/p4-env/tree/advanced/p4">https://gitee.com/poohdang/p4-env/tree/advanced/p4</a>)</p>
+<h2 id="实验模块介绍"><a href="#实验模块介绍" class="headerlink" title="实验模块介绍"></a>实验模块介绍</h2><p><img src="/images/p4.jpg" alt="alt text"></p>
 <p>整体上是在Mininet的基础上，将其中的交换机替换为帮bmv2交换机。具体来讲，p4代码通过p4c进行编译，并加载到bmv2上，以实现数据平面。同时，控制平面由PI实现。整体网络拓扑和前端由Mininet实现。</p>
 <table>
 <thead>
@@ -176,7 +176,7 @@
 </tr>
 </tbody></table>
 <p>安装bmv2和PI之前还需要以下模块作为依赖<code>bmv2_deps</code><br>| Github项目 | 版本 | 来自于 |<br>| — | — | — |<br>| nnpy | - | nanomsg |<br>| <a target="_blank" rel="noopener" href="https://github.com/nanomsg/nanomsg/releases/tag/1.">nanomsg</a> | 1.0.0 |  nanomsg |<br>| <a target="_blank" rel="noopener" href="https://github.com/apache/thrift/releases/tag/0.11.0">thrift</a> | 0.11.0 |  apache |</p>
-<h2 id="安装过程中出现的问题及解决方案"><a href="#安装过程中出现的问题及解决方案" class="headerlink" title="安装过程中出现的问题及解决方案"></a>安装过程中出现的问题及解决方案</h2><p>虽然链接(<a target="_blank" rel="noopener" href="https://gitee.com/poohdang/p4-env/tree/advanced/p4)%E6%8F%90%E4%BE%9B%E5%88%86%E6%AD%A5%E9%AA%A4%E7%9A%84%E8%84%9A%E6%AD%A5%EF%BC%8C%E4%BD%86%E4%BB%8D%E9%9C%80%E8%A6%81%E4%BF%AE%E5%A4%8D%E4%B8%80%E7%82%B9%E9%97%AE%E9%A2%98%E3%80%82">https://gitee.com/poohdang/p4-env/tree/advanced/p4)提供分步骤的脚步，但仍需要修复一点问题。</a></p>
+<h2 id="安装过程中出现的问题及解决方案"><a href="#安装过程中出现的问题及解决方案" class="headerlink" title="安装过程中出现的问题及解决方案"></a>安装过程中出现的问题及解决方案</h2><p>虽然链接 (<a target="_blank" rel="noopener" href="https://gitee.com/poohdang/p4-env/tree/advanced/p4">https://gitee.com/poohdang/p4-env/tree/advanced/p4</a>) 提供分步骤的脚步，但仍需要修复一点问题。</p>
 <ol>
 <li><p>PI需要更低版本的grpc和protobuf</p>
 <p> 更改p4-git.sh中的版本为</p>
@@ -186,7 +186,7 @@
 <blockquote>
 <p>GRPC_COMMIT=”v1.30.0”</p>
 </blockquote>
-<p> 注意其中libFuzzl的软件包直接git存在问题，可以挂梯子到(<a target="_blank" rel="noopener" href="https://chromium.googlesource.com/chromium/llvm-project/llvm/lib/Fuzzer)%E4%B8%8B%E8%BD%BD%E5%8E%86%E5%8F%B2%E7%89%88%E6%9C%AC%E3%80%82">https://chromium.googlesource.com/chromium/llvm-project/llvm/lib/Fuzzer)下载历史版本。</a></p>
+<p> 注意其中libFuzzl的软件包直接git存在问题，可以挂梯子到 (<a target="_blank" rel="noopener" href="https://chromium.googlesource.com/chromium/llvm-project/llvm/lib/Fuzzer">https://chromium.googlesource.com/chromium/llvm-project/llvm/lib/Fuzzer</a>) 下载历史版本。</p>
 </li>
 <li><p>对应不同版本的git，所需的git子模块的命令存在差别，记得在脚本里进行更改</p>
 <p> 采用</p>
@@ -210,7 +210,7 @@
 <p> 对于WSL环境，当内存不足时会发生断联情况</p>
 <p> 连接中断后，直接重新编译会报错，需要先进入对应的目录make clean</p>
 </li>
-<li><p>mininet的安装会需要安装对于的ovswitch，这时候可能会出现依赖问题<br> 可根据(<a target="_blank" rel="noopener" href="https://www.cnblogs.com/bymo/p/9046586.html)%E5%85%88%E8%87%AA%E8%A1%8C%E5%AE%89%E8%A3%85">https://www.cnblogs.com/bymo/p/9046586.html)先自行安装</a></p>
+<li><p>mininet的安装会需要安装对于的ovswitch，这时候可能会出现依赖问题<br> 可根据 (<a target="_blank" rel="noopener" href="https://www.cnblogs.com/bymo/p/9046586.html">https://www.cnblogs.com/bymo/p/9046586.html</a>) 先自行安装</p>
 <pre><code> cd /var/lib/dpkg/
  sudo mv info/ info_bak          # 现将info文件夹更名
  sudo mkdir info                 # 再新建一个新的info文件夹
@@ -224,7 +224,7 @@
 <li><p>后面会需要配置目录，如果正常配没看到site目录，可以在~/.bashrc文件里加PYTHONPATH</p>
 </li>
 <li><p>对于WSL环境，运行demo时可能报错<br>Error: Specified qdisc kind is unknown.</p>
-<p> 可以用(<a target="_blank" rel="noopener" href="https://github.com/imunes/imunes/issues/111)%E9%87%8C%E6%8F%90%E5%88%B0%E7%9A%84%E6%96%B9%E6%B3%95%E8%A7%A3%E5%86%B3">https://github.com/imunes/imunes/issues/111)里提到的方法解决</a></p>
+<p> 可以用 (<a target="_blank" rel="noopener" href="https://github.com/imunes/imunes/issues/111">https://github.com/imunes/imunes/issues/111</a>) 里提到的方法解决</p>
 <p> For anyone else with this problem, I have also tried this (with similar steps), and successfully installed the NETEM module:</p>
 <pre><code> # Clone
  git clone https://github.com/microsoft/WSL2-Linux-Kernel.git
