@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="guoyingxin">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="2024.7.10 基于P4的软件交换机仿真环境搭建"/>
+  <meta property="og:description" content="" />
+  <meta property="og:site_name" content="guoyingxin"/>
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="http://example.com"/>
+  
+    <link rel="alternate" href="/atom.xml" title="guoyingxin" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/IMG_20220202_121224.png">
+  
+
+  <!-- Site Title -->
+  <title>guoyingxin</title>
+
+  <!-- Bootstrap CSS -->
+  
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+  <!-- Custom CSS -->
+  
+  
+<link rel="stylesheet" href="/css/style.light.css">
+
+
+  <!-- Google Analytics -->
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/IMG_20210814_173539.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">2024.7.10 基于P4的软件交换机仿真环境搭建</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  Home
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  Archives
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a target="_blank" rel="noopener" href="https://github.com/guoyingxx">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="mailto:guoyingxin@sjtu.edu.cn">
+                  
+                  Email
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By guoyingxin</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2024-07-10</span>
+            <span class="time">16:22:41</span>
+          </span>
+          
+        </div>
+        <!-- Tags -->
+        
+          <div class="post-tags text-muted">
+            Tags: 
+
+<a class="tag" href="/tags/P4/">#P4</a>
+
+
+          </div>
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <p>参考(<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/554963544">https://zhuanlan.zhihu.com/p/554963544</a>), (<a target="_blank" rel="noopener" href="https://gitee.com/poohdang/p4-env/tree/advanced/p4">https://gitee.com/poohdang/p4-env/tree/advanced/p4</a>)</p>
+<h2 id="实验模块介绍"><a href="#实验模块介绍" class="headerlink" title="实验模块介绍"></a>实验模块介绍</h2><p><img src="image.png" alt="alt text"></p>
+<p>整体上是在Mininet的基础上，将其中的交换机替换为帮bmv2交换机。具体来讲，p4代码通过p4c进行编译，并加载到bmv2上，以实现数据平面。同时，控制平面由PI实现。整体网络拓扑和前端由Mininet实现。</p>
+<table>
+<thead>
+<tr>
+<th>Github项目</th>
+<th>功能</th>
+<th>版本</th>
+<th>来自于</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a target="_blank" rel="noopener" href="https://github.com/protocolbuffers/protobuf">protobuf</a></td>
+<td>数据消息交换格式，grpc的默认选项</td>
+<td>v3.18.1</td>
+<td>Google</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://github.com/grpc/grpc">grpc</a></td>
+<td>远程程序调用(RPC)框架，PI基于此实现</td>
+<td>v1.43.2</td>
+<td>Google</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://github.com/p4lang/PI">PI</a></td>
+<td>P4 Runtime Server</td>
+<td>v0.1.0</td>
+<td>P4lang</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://github.com/p4lang/behavioral-model">bmv2</a></td>
+<td>支持P4编程的软件交换机</td>
+<td>1.15.0</td>
+<td>P4lang</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://github.com/p4lang/p4c">p4c</a></td>
+<td>P4 编译器</td>
+<td>v1.2.2.1</td>
+<td>P4lang</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://github.com/mininet/mininet">mininet</a></td>
+<td>网络仿真器</td>
+<td>Latest</td>
+<td>Mininet</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://github.com/p4lang/tutorials">tutorials</a></td>
+<td>P4官方提供的快速上手教程</td>
+<td>Latest</td>
+<td>P4lang</td>
+</tr>
+</tbody></table>
+<p>安装bmv2和PI之前还需要以下模块作为依赖<code>bmv2_deps</code><br>| Github项目 | 版本 | 来自于 |<br>| — | — | — |<br>| nnpy | - | nanomsg |<br>| <a target="_blank" rel="noopener" href="https://github.com/nanomsg/nanomsg/releases/tag/1.">nanomsg</a> | 1.0.0 |  nanomsg |<br>| <a target="_blank" rel="noopener" href="https://github.com/apache/thrift/releases/tag/0.11.0">thrift</a> | 0.11.0 |  apache |</p>
+<h2 id="安装过程中出现的问题及解决方案"><a href="#安装过程中出现的问题及解决方案" class="headerlink" title="安装过程中出现的问题及解决方案"></a>安装过程中出现的问题及解决方案</h2><p>虽然链接(<a target="_blank" rel="noopener" href="https://gitee.com/poohdang/p4-env/tree/advanced/p4)%E6%8F%90%E4%BE%9B%E5%88%86%E6%AD%A5%E9%AA%A4%E7%9A%84%E8%84%9A%E6%AD%A5%EF%BC%8C%E4%BD%86%E4%BB%8D%E9%9C%80%E8%A6%81%E4%BF%AE%E5%A4%8D%E4%B8%80%E7%82%B9%E9%97%AE%E9%A2%98%E3%80%82">https://gitee.com/poohdang/p4-env/tree/advanced/p4)提供分步骤的脚步，但仍需要修复一点问题。</a></p>
+<ol>
+<li><p>PI需要更低版本的grpc和protobuf</p>
+<p> 更改p4-git.sh中的版本为</p>
+<blockquote>
+<p>PROTOBUF_COMMIT=”v3.12.2” </p>
+</blockquote>
+<blockquote>
+<p>GRPC_COMMIT=”v1.30.0”</p>
+</blockquote>
+<p> 注意其中libFuzzl的软件包直接git存在问题，可以挂梯子到(<a target="_blank" rel="noopener" href="https://chromium.googlesource.com/chromium/llvm-project/llvm/lib/Fuzzer)%E4%B8%8B%E8%BD%BD%E5%8E%86%E5%8F%B2%E7%89%88%E6%9C%AC%E3%80%82">https://chromium.googlesource.com/chromium/llvm-project/llvm/lib/Fuzzer)下载历史版本。</a></p>
+</li>
+<li><p>对应不同版本的git，所需的git子模块的命令存在差别，记得在脚本里进行更改</p>
+<p> 采用</p>
+<blockquote>
+<p>git clone –recusive xxx.git</p>
+</blockquote>
+<p> 或 (git版本大于2.13)</p>
+<blockquote>
+<p>git clone –recurse-submodules xx.git</p>
+</blockquote>
+<p> 如果git仓库已经建立，可采用</p>
+<blockquote>
+<p>git submodule update –init –recursive</p>
+</blockquote>
+<p> (<a target="_blank" rel="noopener" href="https://blog.csdn.net/kakadiablo/article/details/119563791?spm=1001.2101.3001.6650.5&utm_medium=distribute.pc_relevant.none-task-blog-2~default~BlogCommendFromBaidu~Rate-5-119563791-blog-104332017.pc_relevant_default&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~BlogCommendFromBaidu~Rate-5-119563791-blog-104332017.pc_relevant_default&utm_relevant_index=6">参考</a>)</p>
+</li>
+</ol>
+<ol start="3">
+<li><p>编译过程中，需确认所有的模块都成功编译</p>
+<p> PI编译失败，很可能是两个来自Google的模块的版本问题</p>
+<p> 对于WSL环境，当内存不足时会发生断联情况</p>
+<p> 连接中断后，直接重新编译会报错，需要先进入对应的目录make clean</p>
+</li>
+<li><p>mininet的安装会需要安装对于的ovswitch，这时候可能会出现依赖问题<br> 可根据(<a target="_blank" rel="noopener" href="https://www.cnblogs.com/bymo/p/9046586.html)%E5%85%88%E8%87%AA%E8%A1%8C%E5%AE%89%E8%A3%85">https://www.cnblogs.com/bymo/p/9046586.html)先自行安装</a></p>
+<pre><code> cd /var/lib/dpkg/
+ sudo mv info/ info_bak          # 现将info文件夹更名
+ sudo mkdir info                 # 再新建一个新的info文件夹
+ sudo apt-get update             # 更新
+ sudo apt-get -f install         # 修复
+ sudo mv info/* info_bak/        # 执行完上一步操作后会在新的info文件夹下生成一些文件，现将这些文件全部移到info_bak文件夹下
+ sudo rm -rf info                # 把自己新建的info文件夹删掉
+ sudo mv info_bak info           # 把以前的info文件夹重新改回名
+</code></pre>
+</li>
+<li><p>后面会需要配置目录，如果正常配没看到site目录，可以在~/.bashrc文件里加PYTHONPATH</p>
+</li>
+<li><p>对于WSL环境，运行demo时可能报错<br>Error: Specified qdisc kind is unknown.</p>
+<p> 可以用(<a target="_blank" rel="noopener" href="https://github.com/imunes/imunes/issues/111)%E9%87%8C%E6%8F%90%E5%88%B0%E7%9A%84%E6%96%B9%E6%B3%95%E8%A7%A3%E5%86%B3">https://github.com/imunes/imunes/issues/111)里提到的方法解决</a></p>
+<p> For anyone else with this problem, I have also tried this (with similar steps), and successfully installed the NETEM module:</p>
+<pre><code> # Clone
+ git clone https://github.com/microsoft/WSL2-Linux-Kernel.git
+
+ # Dependencies
+ sudo apt update &amp;&amp; sudo apt upgrade -y
+ sudo apt install -y build-essential flex bison libgtk2.0-dev libelf-dev \
+     libncurses-dev autoconf libudev-dev libtool zip unzip v4l-utils libssl-dev \
+     python3-pip cmake git iputils-ping net-tools dwarves
+
+ # Configure
+ cd WSL2-Linux-Kernel
+ sudo cp Microsoft/config-wsl .config
+ sudo make menuconfig
+ # Inside the menuconfig screen, head to:
+ # Networking Support -&gt; Networking Options -&gt; QoS/Fair options -&gt; NETEM
+ # and mark it as * (spacebar two times, if I remember correctly)
+
+ # Prepare Kernel
+ sudo make -j$(nproc)
+ sudo make headers_install -j$(nproc)
+ sudo make modules_install -j$(nproc)
+ sudo make install -j$(nproc)
+ sudo cp vmlinux /mnt/c
+ From Windows, I then created the file C:\Users\&lt;username&gt;\.wslconfig with the contents of:
+
+ [wsl2]
+ kernel=C:\\vmlinux
+ Then cmd:
+
+ &gt; wsl --shutdown
+ &gt; wsl
+</code></pre>
+</li>
+<li><p>补全代码就可以正常ping通了</p>
+</li>
+</ol>
+<p><strong>Enjoy it!</strong></p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        <p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+
+<script src="/js/highlight.pack.js"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+  </body>
+</html>
+
