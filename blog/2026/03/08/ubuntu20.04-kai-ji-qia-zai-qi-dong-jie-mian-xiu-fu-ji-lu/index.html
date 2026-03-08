@@ -1,0 +1,127 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5"><title>Yingxin Guo Homepage</title><meta name="author" content="Yingxin Guo"><link rel="shortcut icon" href="/favicon.ico"><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><meta name="generator" content="Hexo 7.3.0"></head><body><header id="page_header"><div class="header_wrap"><div id="blog_name"><a class="blog_title" id="site-name" href="/">Yingxin Guo Homepage</a></div><button class="menus_icon"><div class="navicon"></div></button><ul class="menus_items"><li class="menus_item"><a class="site-page" href="/"> About</a></li><li class="menus_item"><a class="site-page" href="/#Publications"> Publications</a></li><li class="menus_item"><a class="site-page" href="/blog"> Blog</a></li></ul></div></header><main id="page_main"><!-- blog 文章不显示侧边栏--><style>/* ===== 文章详情页样式 ===== */
+.post {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 2rem 3rem;  /* 右边距1.5rem，左边距3rem（往右移） */
+    //- font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* 文章头部 */
+.post-header {
+    margin-bottom: 2.5rem;
+}
+
+/* 文章标题 */
+.post-title {
+    font-size: 3rem;
+    font-weight: 600;
+    color: #2c3e50;
+    margin: 0 0 1rem 0;
+    line-height: 1.4;
+    letter-spacing: -0.02em;
+}
+
+/* 元信息 */
+.post-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+    color: #6a737d;
+}
+
+.post-meta time {
+    display: flex;
+    align-items: center;
+}
+
+.post-meta time:before {
+    content: "📅";
+    margin-right: 0.4rem;
+    font-size: 1.8rem;
+}
+
+.post-categories {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.post-categories:before {
+    content: "📂";
+    margin-right: 0.4rem;
+    font-size: 1.8rem;
+}
+
+.post-categories a {
+    color: #0366d6;
+    text-decoration: none;
+    background: #f1f8ff;
+    padding: 0.2rem 0.6rem;
+    border-radius: 3px;
+    font-size: 1.8rem;
+}
+
+/* 正文内容 - 大小不变 */
+.post-content {
+    color: #24292e;
+    line-height: 1.8;
+    font-size: 1.8rem;  /* 大小不变 */
+}
+
+.post-content p {
+    margin: 0 0 1.5rem 0;
+    font-size: 1.8rem;
+    line-height: 1.8;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .post {
+        padding: 1.5rem 1rem 1.5rem 1.5rem;  /* 移动端适当减少左边距 */
+    }
+}
+</style><article class="post" itemscope itemtype="http://schema.org/Article"><header class="post-header"><h1 class="post-title">2024.2.19 Ubuntu20.04 卡在开机启动界面修复记录</h1><div class="post-meta"><time datetime="2026-03-07T16:00:00.000Z">2026年03月08日</time><div class="post-categories"></div></div></header><div class="post-content"><h2 id="环境介绍"><a href="#环境介绍" class="headerlink" title="环境介绍"></a>环境介绍</h2><p>系统: Ubuntu20.04 + Win11 双系统</p>
+<p>硬件: CPU12400 + 核显 + 微星B660m主板 + 2*16G内存 + 500G固态 + 2T机械</p>
+<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>经常远程使用该机器跑仿真，最近没有用到，发现向日葵无法连接，到实验室后看到开机卡在启动界面，该界面固定显示微星Logo</p>
+<h2 id="排查流程"><a href="#排查流程" class="headerlink" title="排查流程"></a>排查流程</h2><ol>
+<li><p>硬件排查</p>
+<p>开始怀疑是硬件问题，根据(<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/26482140">https://www.zhihu.com/question/26482140</a>)<br>依次排查:</p>
+<p>a. 拔机械硬盘SATA线，仍不行</p>
+<p>b. 拆主板电池，grub界面有变化，但是仍无法进入</p>
+<p>c. 装回电池和SATA线</p>
+<p>d. 连上键盘后发现Win11系统可以进入，并且盘内内容可以正常读取</p>
+<p>e. 备份仿真实验数据，确认不是硬件故障</p>
+</li>
+<li><p>Ubuntu 系统</p>
+<p>a. 在高级设置下，可以看到报错 VFS: Unable to Mount Root FS on Unknown-Block(0,0)</p>
+<p>b. 根据(<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/606282574">https://zhuanlan.zhihu.com/p/606282574</a>)<br>是由于在更新时关机导致fs引导系统损耗，考虑长期开机不更新，有可能是该原因，按照其中内容修复</p>
+</li>
+</ol>
+<h2 id="Ubuntu-系统恢复"><a href="#Ubuntu-系统恢复" class="headerlink" title="Ubuntu 系统恢复"></a>Ubuntu 系统恢复</h2><ol>
+<li><p>高级设置下，进入之前版本内核的recovery mode</p>
+</li>
+<li><p>依次选择并回车1. clean 2. dpkg 3. grub 4. fsck 5. resume</p>
+</li>
+<li><p>经过步骤d之后可以进入Ubuntu系统，之后修复挂载问题</p>
+</li>
+<li><p>通过df命令查看挂载出问题的root对应sda</p>
+</li>
+<li><p>修复挂载命令(先挂载到&#x2F;mnt下，在将mnt设为root)<br>  sudo mount &#x2F;dev&#x2F;sda3 &#x2F;mnt</p>
+<p>  sudo mount –bind &#x2F;dev &#x2F;mnt&#x2F;dev</p>
+<p>  sudo mount –bind &#x2F;dev&#x2F;pts &#x2F;mnt&#x2F;dev&#x2F;pts</p>
+<p>  sudo mount –bind &#x2F;proc &#x2F;mnt&#x2F;proc</p>
+<p>  sudo mount –bind &#x2F;sys &#x2F;mnt&#x2F;sys</p>
+<p>  sudo chroot &#x2F;mnt</p>
+</li>
+<li><p>下一步此前连接方法报错，故改为(<a target="_blank" rel="noopener" href="https://askubuntu.com/questions/41930/kernel-panic-not-syncing-vfs-unable-to-mount-root-fs-on-unknown-block0-0#">https://askubuntu.com/questions/41930/kernel-panic-not-syncing-vfs-unable-to-mount-root-fs-on-unknown-block0-0#</a>)<br>   中提到的: sudo dpkg –configure -a</p>
+</li>
+<li><p>sudo update-grub</p>
+</li>
+<li><p>重启，正常进入Ubuntu系统</p>
+</li>
+</ol>
+</div></article></main><div class="nav-wrap"><div class="nav"><button class="site-nav"><div class="navicon"></div></button><ul class="nav_items"><li class="nav_item"><a class="nav-page" href="/"> About</a></li><li class="nav_item"><a class="nav-page" href="/#Publications"> Publications</a></li><li class="nav_item"><a class="nav-page" href="/blog"> Blog</a></li></ul></div><div class="cd-top"><i class="fa fa-arrow-up" aria-hidden="true"></i></div></div><footer id="page_footer"><div class="footer_wrap"><div class="copyright">&copy;2026 by Yingxin Guo</div><div class="theme-info">Powered by <a target="_blank" href="https://hexo.io" rel="nofollow noopener">Hexo</a> & <a target="_blank" href="https://github.com/PhosphorW/hexo-theme-academia" rel="nofollow noopener">Academia Theme</a></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery-pjax@latest/jquery.pjax.min.js"></script><script src="/js/main.js"></script></body></html>
